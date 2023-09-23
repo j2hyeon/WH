@@ -13,12 +13,12 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
     printf("    src MAC: ");
     for (int i = 0; i < 6; i++)
     {
-        printf("%2d", eth->ether_shost[i]);
+        printf("%02x ", eth->ether_shost[i]);
     }
     printf("\n  dst MAC: ");
     for (int i = 0; i < 6; i++)
     {
-        printf("%2d", eth->ether_dhost[i]);
+        printf("%02x ", eth->ether_dhost[i]);
     }
 
     // 2. IP PACKET (0X0800)
@@ -39,7 +39,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
             printf("    scr TCP: %s\n", ntohs(tcp->tcp_sport));
             printf("    dst TCP: %s\n", ntohs(tcp->tcp_dport));
 
-            return 0;
+            return;
         }
     }
 }
